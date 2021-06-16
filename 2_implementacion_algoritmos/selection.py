@@ -33,7 +33,7 @@ def SelectionSort(A):
 #Initial State
 nameFiles_idx = np.concatenate((np.arange(100,501,400),np.arange(1000,10000,1000),np.arange(10000,100001,10000)),axis=None)
 
-file = open('selectionSort_time.txt', "w")
+file = open('selectionSort_python_time.txt', "w")
 dicPaths = {}
 for namefile in tqdm(nameFiles_idx):
   dicPaths.update({namefile:'generatedTestData/example_'+str(namefile)+".txt"})
