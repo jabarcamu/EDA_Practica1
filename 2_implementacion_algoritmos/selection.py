@@ -2,6 +2,8 @@
 # Sort
 import sys
 import time
+import os
+from tqdm import tqdm
 
 '''
 A = []
@@ -12,15 +14,10 @@ for k in A:
     B += [int(k.strip())]
 '''
 
-A=[]
-with open('generatedTestData/example_100.txt', "r") as f:
-    for line in f:
-        A += [int(line.strip())]
-start = time.process_time()
-# your code here    
-
-# Traverse through all array elements
-for i in range(len(A)):
+# Function to do selection sort
+def SelectionSort(A):
+  # Traverse through all array elements
+  for i in range(len(A)):
      
     # Find the minimum element in remaining
     # unsorted array
@@ -32,9 +29,33 @@ for i in range(len(A)):
     # Swap the found minimum element with
     # the first element       
     A[i], A[min_idx] = A[min_idx], A[i]
+
+#Initial State
+nameFiles_idx = np.concatenate((np.arange(100,501,400),np.arange(1000,10000,1000),np.arange(10000,100001,10000)),axis=None)
+
+file = open('selectionSort_time.txt', "w")
+dicPaths = {}
+for namefile in tqdm(nameFiles_idx):
+  dicPaths.update({namefile:'generatedTestData/example_'+str(namefile)+".txt"})
+  #create specific file
+
+  A=[]
+  with open(dicPaths[namefile], "r") as f:
+    for line in f:
+        A += [int(line.strip())]
+
+  start = time.process_time()
+
+  SelectionSort(A)
  
-# Driver code to test above
-print(time.process_time() - start)
-print ("Sorted array")
-#for i in range(len(A)):
-#    print("%d" %A[i])
+  # Driver code to test above
+  result = time.process_time() - start
+  file.write(str(result) +"\n")
+  print("\n Sorted array")
+  print(time.process_time() - start)
+  
+  #for i in range(len(A)):
+  #    print("%d" %A[i])
+
+file.close()
+#end procedure
