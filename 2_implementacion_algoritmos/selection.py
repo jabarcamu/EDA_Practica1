@@ -50,7 +50,7 @@ for namefile in tqdm(nameFiles_idx):
  
   # Driver code to test above
   result = time.process_time() - start
-  file.write(str(result) +"\n")
+  file.write(str(namefile) + ' ' + str(result) +"\n")
   print("\n Sorted array")
   print(time.process_time() - start)
   

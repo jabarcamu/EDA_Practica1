@@ -2,6 +2,9 @@
 #include <bits/stdc++.h>
 #include <sstream>
 #include <string>
+#include <vector>
+#include <iostream>
+#include <fstream>
 
 using namespace std;
  
@@ -40,45 +43,71 @@ int main()
 {
     //int arr[] = { 12, 11, 13, 5, 6 };
  
-    ifstream infile1("generatedTestData/example_100.txt");
+    vector<int> generate; 
+    generate.push_back(100);
+    generate.push_back(500);
+
+    for(int i=1000 ; i < 10000 ; i+=1000) {
+        generate.push_back(i);
+    }
+    for(int i=10000 ; i < 100001 ; i+=10000) {
+        generate.push_back(i);
+    }
+    
+    ofstream myfile;
+    myfile.open ("insertionSort_cpp_time.txt");
  
-    string linea;
-    int size = 0;
-    while (getline(infile1, linea))
-    {
-        istringstream iss(linea);        
-        size++;
+    for (int k = 0; k < generate.size(); k++) {
+ 
+        ifstream infile1("generatedTestData/example_" + to_string(generate[k]) + ".txt");
+    
+        string linea;
+        int size = 0;
+        while (getline(infile1, linea))
+        {
+            istringstream iss(linea);        
+            size++;
+        }
+    
+        ifstream infile2("generatedTestData/example_" + to_string(generate[k]) + ".txt");
+
+        int arr[size];
+        int i=0;
+        string line;
+        while (getline(infile2, line))
+        {
+            istringstream iss(line);
+            int a;
+            if (!(iss >> a)) { break; } // error        
+            arr[i] = a;
+            i++;
+        }
+
+        int n = sizeof(arr) / sizeof(arr[0]);
+    
+        clock_t start, end;
+        start = clock();
+    
+        insertionSort(arr, n);
+
+        end = clock();
+
+        double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
+    
+        cout << "Sorted array:";
+    
+        cout << "\n Time taken by program is : " << fixed
+            << time_taken << setprecision(8);
+        cout << " sec " << endl;
+
+        //writting in the file
+        myfile << generate[k] << " "; 
+        myfile << fixed << time_taken;    
+        myfile << "\n";
+
     }
  
-    ifstream infile2("generatedTestData/example_100.txt");
-
-    int arr[size];
-    int i=0;
-    string line;
-    while (getline(infile2, line))
-    {
-        istringstream iss(line);
-        int a;
-        if (!(iss >> a)) { break; } // error        
-        arr[i] = a;
-        i++;
-    }
-
-    int n = sizeof(arr) / sizeof(arr[0]);
- 
-    clock_t start, end;
-    start = clock();
- 
-    insertionSort(arr, n);
-
-    end = clock();
-
-    printArray(arr, n);
- 
-    double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
-    cout << "\n Time taken by program is : " << fixed
-         << time_taken << setprecision(8);
-    cout << " sec " << endl;
+    myfile.close();
  
     return 0;
 }

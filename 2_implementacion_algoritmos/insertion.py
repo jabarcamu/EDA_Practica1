@@ -1,4 +1,3 @@
-# Python program for implementation of Insertion Sort
 import sys
 import time
 import os
@@ -24,7 +23,7 @@ def insertionSort(arr):
 #Initial State
 nameFiles_idx = np.concatenate((np.arange(100,501,400),np.arange(1000,10000,1000),np.arange(10000,100001,10000)),axis=None)
 
-file = open('insertionSort_time.txt', "w")
+file = open('insertionSort_python_time.txt', "w")
 dicPaths = {}
 for namefile in tqdm(nameFiles_idx):
   dicPaths.update({namefile:'generatedTestData/example_'+str(namefile)+".txt"})
@@ -41,7 +40,7 @@ for namefile in tqdm(nameFiles_idx):
 
   # Driver code to test above
   result = time.process_time() - start
-  file.write(str(result) +"\n")
+  file.write(str(namefile) + ' ' + str(result) +"\n")
   print("\n Sorted array")
   print(time.process_time() - start)
 
