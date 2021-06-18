@@ -1,0 +1,8 @@
+set terminal svg
+set output  "PlotFiles/exectime_by_heapsort_cpp.svg"
+set style data linespoints
+set title "Execution Time _by_heapsort in C++"
+set offset 0,0,0.5,0.5
+set autoscale fix
+set key left Left
+plot [0:100000][0:0.05] "PlotFiles/exectime_cpp_by_heapsort.txt" using 1:2 title " Time" with linespoints ps 2 pt 4
