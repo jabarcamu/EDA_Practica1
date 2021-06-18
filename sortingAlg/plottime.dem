@@ -1,0 +1,14 @@
+
+set terminal png
+set output "exectime_heapsort_cpp.png"
+
+set style data linespoints
+
+set title "Execution Time with Heapsort in C++"
+
+set style data line
+set offset 0,0,.5,.5
+set autoscale fix
+set key left Left
+
+plot [0:100000][0:0.05] "exectime_cpp.txt" using 1:2 title " Time" with linespoints ps 2 pt 4

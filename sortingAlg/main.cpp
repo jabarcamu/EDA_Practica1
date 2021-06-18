@@ -34,6 +34,14 @@ int main(){
 	Quicksort algQuickSort;
 	
 	ofstream ofs;
+	ofstream ofs_time;
+	ofs_time.open("exectime_cpp.txt",ofstream::out);
+	if(ofs_time.is_open()){
+		ofs_time << "#NumPrueba" << " " << "TiempoEjecucion" << endl;	
+	}else{
+		cout << "no se puede abrir archivo de tiempo" << endl;
+	}
+
 	string nameOutputFile="";
 	
 	
@@ -59,11 +67,17 @@ int main(){
 				break;
 			case 2:
 				//sorting by quicksort
+				clock_gettime(CLOCK_MONOTONIC, &start);
+				ios_base::sync_with_stdio(false);
 				algQuickSort.quicksort(testData[numtest],0,indTest[numtest]-1);
+				clock_gettime(CLOCK_MONOTONIC, &end);
 				break;
 			default:
 				//default will be heapsort
+				clock_gettime(CLOCK_MONOTONIC, &start);
+				ios_base::sync_with_stdio(false);
 				algHeapSort.heapsort(testData[numtest],indTest[numtest]);
+				clock_gettime(CLOCK_MONOTONIC, &end);
 				break;
 
 		}
@@ -77,14 +91,23 @@ int main(){
 				cout << "No puede crear archivo de escritura"<<endl;
 			}
 		}
+		ofs.close();		
 		//Saving execution time
 		double  time_taken;
 		time_taken = (end.tv_sec - start.tv_sec) * 1e9;
 		time_taken = (time_taken + (end.tv_nsec - start.tv_nsec) * 1e-9);	
 		cout << "It last "<<fixed<<time_taken << setprecision(9)<< " seconds"<<endl;
 		execTime.push_back(time_taken);
-		ofs.close();		
+
+		//times in file
+		if(ofs_time.is_open()){
+			ofs_time << indTest[numtest] << " " << time_taken << endl;	
+		}else{
+			cout << "no se puede abrir archivo de tiempo" << endl;
+		}
+		
 	}
+	ofs_time.close();
 	
 	return 0;
 }
