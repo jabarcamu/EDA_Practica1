@@ -32,6 +32,11 @@ void Heapsort::heapsort(int arr[], int n){
 
 
 Heapsort::Heapsort(){}
+void Heapsort::printArray(int arr[], int n){
+	for (int i=0; i<n; i+=n/10)
+      		cout << arr[i] << " ";
+  	cout << "\n";   
+}
 /*int Heapsort::getNum(){
 	return num;
 }

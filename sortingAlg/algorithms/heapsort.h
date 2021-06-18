@@ -10,6 +10,7 @@ class Heapsort{
 		//int getNum();
 		void heapify(int arr[], int n, int i);
 		void heapsort(int arr[], int n);
+		void printArray(int arr[], int n);
 
 };
 

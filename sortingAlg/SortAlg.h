@@ -2,28 +2,43 @@
 #define sortalg_h
 
 #include "algorithms/heapsort.h"
-
+#include <stdlib.h>
+#include <stdio.h>
 #include <string>
 #include <iostream> //console
 #include <bits/stdc++.h> //memset
 #include <fstream> //archivos
 #include <map>
-using namespace std;
+#include <vector>
 
+using namespace std;
 
 class SortAlg
 {
 	private:
-		int arrayint[500];
+		//Carga de Datos
+		int **testData;
+		vector<int> vecIndTest;
+		map<int,string> testPaths;
+		string pathBase = "generatedTestData/";
+		string nameFileBase = "example_";
+		int numDatos;	
+		//Algoritmos
+		
+		//map<string,auto> sorts;
+				
 		
 	public:
 		SortAlg();
 		void genDicNumeroItems();
 		void assignDefaultValues();
-		void loadTestData();
-		int* getArray(); 
-		void printArray(int n);	
-
+		void applySorting(string nameSortAlg);
+		//two time of lecture
+		int** getTestData(); 
+		void printTestData();
+		int getNumDatos();	
+		vector<int> getIndTest();
+		string getNameFileBase();
 };
 
 #endif
