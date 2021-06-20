@@ -5,7 +5,7 @@ from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
 
-with open("insertionSort_python_time.txt") as r:
+with open("../2_implementacion_algoritmos/python/insertionSort_python_time.txt") as r:
     content = r.readlines()
 
 content = [x.strip() for x in content]
@@ -15,7 +15,7 @@ for line in content:
     sad = [ int(s[0]), float(s[1])]
     mat.append(sad)
 
-with open("insertionSort_cpp_time.txt") as r1:
+with open("../2_implementacion_algoritmos/cpp/insertionSort_cpp_time.txt") as r1:
     content2 = r1.readlines()
 
 content2 = [x2.strip() for x2 in content2]
@@ -25,7 +25,7 @@ for line2 in content2:
     sad2 = [ int(s[0]), float(s[1])]
     mat2.append(sad2)
 
-with open("insertionSort_java_time.txt") as r2:
+with open("../2_implementacion_algoritmos/java/insertionSort_java_time.txt") as r2:
     content3 = r2.readlines()
 
 content3 = [x.strip() for x in content3]
@@ -58,6 +58,3 @@ plt.title("insertion sort")
 plt.legend()
 
 plt.savefig('insertion_diagram.png')
-
-#print(selection)
-#print(data.shape)
