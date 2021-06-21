@@ -1,4 +1,4 @@
-#insertion sort diagram
+#quicksort sort diagram
 import sys
 import os
 from tqdm import tqdm
@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 #Lectura de tiempos de cada tipo de implementacion
 
-with open("../2_implementacion_algoritmos/python/insertionSort_python_time.txt") as r:
+with open("../2_implementacion_algoritmos/python/quicksort_python_time.txt") as r:
     content = r.readlines()
 
 content = [x.strip() for x in content]
@@ -18,7 +18,7 @@ for line in content:
     sad = [ int(s[0]), float(s[1])]
     mat.append(sad)
 
-with open("../2_implementacion_algoritmos/cpp/insertionSort_cpp_time.txt") as r1:
+with open("../2_implementacion_algoritmos/cpp/quicksort_cpp_time.txt") as r1:
     content2 = r1.readlines()
 
 content2 = [x2.strip() for x2 in content2]
@@ -28,7 +28,7 @@ for line2 in content2:
     sad2 = [ int(s[0]), float(s[1])]
     mat2.append(sad2)
 
-with open("../2_implementacion_algoritmos/java/insertionSort_java_time.txt") as r2:
+with open("../2_implementacion_algoritmos/java/quicksort_java_time.txt") as r2:
     content3 = r2.readlines()
 
 content3 = [x.strip() for x in content3]
@@ -59,7 +59,7 @@ plt.plot(x, m, label='java')
 
 plt.xlabel('x label')
 plt.ylabel('y label')
-plt.title("insertion sort")
+plt.title("quicksort sort")
 plt.legend()
 
-plt.savefig('insertion_diagram.png')
+plt.savefig('quicksort_diagram.png')

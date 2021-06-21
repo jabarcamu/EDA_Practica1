@@ -1,5 +1,5 @@
-// C++ program for implementation of selection sort
 #include <bits/stdc++.h>
+#include <utility>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -8,39 +8,44 @@
 
 using namespace std;
 
-// funcion para intercambiar posicion de clave(key)
-void swap(int *xp, int *yp)
+
+
+/* Toma el ultimo elemento como pivote,
+   localiza el pivote en su correcta posicion en el array ordenado
+   localiza los elemento mas pequeños a la izquierda del pivote
+   localiza los elementos mas grande a la derecha del pivote
+   */
+int partition(int arr[], int low, int high)
 {
-    int temp = *xp;
-    *xp = *yp;
-    *yp = temp;
+	//pivote
+	int pivot  = arr[high]; 
+
+	//indice del elemento mas pequenio e indica la correcta posicion del pivote encontrado
+	int i  = (low - 1);
+
+	for (int j = low; j <= high -1; j++)
+	{
+		//si el elemento es mas pequenio que el pivote
+		if (arr[j] < pivot)
+		{
+			i++; //incrementamos el indice del elemento mas pequenio
+			swap(arr[i], arr[j]); 
+		}
+	}
+	swap(arr[i+1], arr[high]);
+	return (i+1);
 }
- 
-void selectionSort(int arr[], int n)
+
+void quicksort(int arr[], int low, int high)
 {
-    int i, j, min_idx;
- 
-    // Mover uno por uno entre el limite del subarray desordenado    
-    for (i = 0; i < n-1; i++)
-    {
-        // Encontrar el minimo elemento en el array desordenado        
-        min_idx = i;
-        for (j = i+1; j < n; j++)
-        if (arr[j] < arr[min_idx])
-            min_idx = j;
- 
-        // Intercambiar el elemento minimo encontrado con el primer elemento        
-        swap(&arr[min_idx], &arr[i]);
-    }
-}
- 
-/* Funcion para imprimir el array */
-void printArray(int arr[], int size)
-{
-    int i;
-    for (i=0; i < size; i++)
-        cout << arr[i] << " ";
-    cout << endl;
+	if (low < high)
+	{
+		int pi = partition(arr, low, high);
+
+		//ordenar los elementos antes y despues del pivote
+		quicksort(arr, low, pi - 1);
+		quicksort(arr, pi+1, high);
+	}
 }
  
 // Ejecucion
@@ -59,25 +64,14 @@ int main()
     }
     // Creacion del archivo para escritura de los items y el tiempo de ejecucion
     ofstream myfile;
-    myfile.open ("selectionSort_cpp_time.txt");
+    myfile.open ("quicksort_cpp_time.txt");
  
     for (int k = 0; k < generate.size(); k++) {
-
-        // para obtencion la cantidad de items
-        ifstream infile1("../../1_preparacion_datos/generatedTestData/example_" + to_string(generate[k]) + ".txt");
-    
-        string linea;
-        int size = 0;
-        while (getline(infile1, linea))
-        {
-            istringstream iss(linea);        
-            size++;
-        }
-
+ 
         // Obtencion de los items insertados a partir del tamaño ya obtenido anteriormente    
         ifstream infile2("../../1_preparacion_datos/generatedTestData/example_" + to_string(generate[k]) + ".txt");
 
-        int arr[size]; //insertando el tamaño del array
+        int arr[generate[k]]; //insertando el tamaño del array
         int i=0;
         string line;
         while (getline(infile2, line))
@@ -96,7 +90,7 @@ int main()
         clock_t start, end;
         start = clock();
 
-        selectionSort(arr, n);
+        quicksort(arr,0, n-1);
     
         end = clock();
     

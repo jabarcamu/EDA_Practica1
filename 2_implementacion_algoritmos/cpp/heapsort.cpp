@@ -1,45 +1,47 @@
-// C++  Insertion Sort - Implementacion
+#include <iostream>
 #include <bits/stdc++.h>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <iostream>
 #include <fstream>
 
 using namespace std;
- 
-/* Funcion para ordenar un array usando InsertionSort */
-void insertionSort(int arr[], int n)
+
+void heapify(int arr[], int n, int i)
 {
-    int i, key, j;
-    //Partir desde 1 hasta len(arr),tamanho
-    for (i = 1; i < n; i++)
-    {
-        key = arr[i];
-        j = i - 1;
- 
-        /* 
-            Mover los elementos de arr[0..i-1] que son
-            mayores que el valor de key, a una posicion 
-            adelante de su posicion actual
-        */
-        while (j >= 0 && arr[j] > key)
-        {
-            arr[j + 1] = arr[j];
-            j = j - 1;
-        }
-        arr[j + 1] = key;
+    int largest = i;
+    int l = 2*i+1;
+    int r = 2*i+2;
+    if (l < n) 
+      if (l < n && arr[largest] < arr[l])
+          largest = l;
+    if (r < n)
+      if (r < n && arr[largest] < arr[r])
+          largest = r;
+
+    if (largest != i){
+        swap(arr[i], arr[largest]);
+        heapify(arr,n,largest);
     }
 }
- 
-// Funcion para imprimir un array de tamaño n 
-void printArray(int arr[], int n)
-{
-    int i;
-    for (i = 0; i < n; i++)
-        cout << arr[i] << " ";
-    cout << endl;
+
+void heapsort(int arr[], int n){
+    
+    for (int i=n/2-1; i>=0; i--)
+        heapify(arr,n,i);
+    for (int i=n-1; i>0; i--){
+        swap(arr[0], arr[i]);
+        heapify(arr,i,0);
+    }
 }
+
+
+void printArray(int arr[], int n){
+	for (int i=0; i<n; i+=n/10)
+      		cout << arr[i] << " ";
+  	cout << "\n";   
+}
+
  
 /* Ejecucion */
 int main()
@@ -58,21 +60,10 @@ int main()
     
     // Creacion del archivo para escritura de los items y el tiempo de ejecucion
     ofstream myfile;
-    myfile.open ("insertionSort_cpp_time.txt");
+    myfile.open ("heapsort_cpp_time.txt");
 
     for (int k = 0; k < generate.size(); k++)
     {
-        // para obtencion la cantidad de items
-        /*ifstream infile1("../../1_preparacion_datos/generatedTestData/example_" + to_string(generate[k]) + ".txt");
-    
-        string linea;
-        int size = 0;
-        while (getline(infile1, linea))
-        {
-            istringstream iss(linea);        
-            size++;
-        } */       
-    
         // Obtencion de los items insertados a partir del tamanho ya obtenido anteriormente
         ifstream infile2("../../1_preparacion_datos/generatedTestData/example_" + to_string(generate[k]) + ".txt");
         
@@ -95,7 +86,7 @@ int main()
         clock_t start, end;
 
         start = clock();    
-        insertionSort(arr, n);
+        heapsort(arr, n);
         end = clock();
 
         // tiempo de ejecucion obtenido

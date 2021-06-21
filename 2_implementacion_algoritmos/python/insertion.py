@@ -25,7 +25,7 @@ def insertionSort(arr):
 #Ejecucion
 
 # Obtencion de los archivos generados
-nameFiles_idx = np.concatenate((np.arange(100,501,400),np.arange(1000,10000,1000)),np.arange(10000,100001,10000),axis=None)
+nameFiles_idx = np.concatenate((np.arange(100,501,400),np.arange(1000,10000,1000),np.arange(10000,100001,10000)),axis=None)
 
 # Creacion del archivo para escritura de los items y el tiempo de ejecucion
 file = open('insertionSort_python_time.txt', "w")
