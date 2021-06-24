@@ -1,4 +1,4 @@
-*** Ejecucion del Codigo y Pruebas
+Ejecucion del Codigo y Pruebas
 
 Bubble Sort:
 
