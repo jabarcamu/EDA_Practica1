@@ -1,6 +1,6 @@
 Ejecucion del Codigo y Pruebas
 
-Bubble Sort:
+Bubble Sort: 
 
 * C++
 	- Elegir un IDE de codigo C++ (que incluya el compilador)
