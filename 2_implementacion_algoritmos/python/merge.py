@@ -1,35 +1,36 @@
 
+# Algoritmo de ordenamiento - MERGE SORT
 # Fuente : https://www.geeksforgeeks.org/merge-sort/
+# This code is contributed by Mayank Khanna
+
 import numpy as np
 import sys
 import time
 import os
 from tqdm import tqdm
 
-
-
-# Python program for implementation of MergeSort
+# arr,  arreglo no ordenado de números
 def mergeSort(arr):
 	if len(arr) > 1:
 
-		# Finding the mid of the array
+		# Encontrando el índice del punto medio del arreglo
 		mid = len(arr)//2
 
-		# Dividing the array elements
+		# arreglo izquierdo
 		L = arr[:mid]
 
-		# into 2 halves
+		# arreglo derecho
 		R = arr[mid:]
 
-		# Sorting the first half
+		# llamada recursiva del arreglo izquierdo
 		mergeSort(L)
 
-		# Sorting the second half
+		# llamada recursiva del arreglo derecho
 		mergeSort(R)
 
 		i = j = k = 0
 
-		# Copy data to temp arrays L[] and R[]
+		# copiar elementos en el arreglo principal, con elementos del arreglo izquierdo y/o derecho.
 		while i < len(L) and j < len(R):
 			if L[i] < R[j]:
 				arr[k] = L[i]
@@ -39,20 +40,20 @@ def mergeSort(arr):
 				j += 1
 			k += 1
 
-		# Checking if any element was left
+		# copiar elementos en el arreglo principal, con elementos del arreglo izquierdo(restantes)
 		while i < len(L):
 			arr[k] = L[i]
 			i += 1
 			k += 1
-
+		# copiar elementos en el arreglo principal, con elementos del arreglo derecho(restantes)
 		while j < len(R):
 			arr[k] = R[j]
 			j += 1
 			k += 1
 
-# Code to print the list
 
 
+# imprime el arreglo
 def printList(arr):
 	for i in range(len(arr)):
 		print(arr[i], end=" ")
@@ -91,5 +92,5 @@ for namefile in nameFiles_idx:
 file.close()
 
 
-# This code is contributed by Mayank Khanna
+
 

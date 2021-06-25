@@ -1,4 +1,6 @@
-// C++  Insertion Sort - Implementacion
+
+// Algoritmo de ordenamiento - INSERTION SORT
+
 #include <bits/stdc++.h>
 #include <sstream>
 #include <string>
@@ -7,15 +9,14 @@
 #include <fstream>
 
 using namespace std;
+
+// imprimir arreglo
 void printArray(int arr[], size_t sizeList){    
     for (int i = 0; i < sizeList; i++) {        
-        if(i==0 || i == (sizeList-1)){
-			cout<< arr[i]<<" , ";
-		}		
-    }    
-    cout<<endl;
+        cout<< arr[i]<<" ";		
+    }        
 }
- // retorna el maximo valor de un arreglo de numeros
+ // retorna el maximo valor de un arreglo de numeros enteros
 int maxValueInArray(int list[], size_t sizeList) {
 	int max = 0;
 	for (int i = 0; i < sizeList; i++) {
@@ -24,6 +25,7 @@ int maxValueInArray(int list[], size_t sizeList) {
 	
 	return max;
 }
+
 // A = lista no ordenada inicial.
 // B = lista ordenada para retornar.
 // k = valor maximo de la lista.

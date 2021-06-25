@@ -1,3 +1,6 @@
+
+# Algoritmo de ordenamiento - COUNTING SORT
+
 import numpy as np
 import sys
 import time
@@ -14,12 +17,12 @@ def maxValueInArray(lista, sizeList):
 		max = max if max >= lista[x] else lista[x] 
 	return max
 
-# a = lista no ordenada, b = lista ordenada, k = valor maximo de la lista
+# a = arreglo no ordenado, k = valor maximo del arreglo
 def counting_sort(a, k):
-	# acumula los valores repetidos de la lista no ordenada
+	# temporal para acumular valores repetidos
 	c = []
 	         
-	# mismo tamaño de la lista no ordenada
+	# arreglo ordenado para retornar, mismo tamaño del arreglo principal.
 	b = [0] * len(a)
 	
 	# inicializando los contadores a 0
@@ -30,7 +33,7 @@ def counting_sort(a, k):
 	for x in range(len(a)):
 		c[a[x]] = c[a[x]] + 1
 	
-	# acumulando los repetidos para las posiciones
+	# acumulando los repetidos para las posiciones(índices del arreglo)
 	for x in range(1, len(c)):
 		c[x] = c[x] + c[x-1]	
 
@@ -41,7 +44,6 @@ def counting_sort(a, k):
 		# descontamos en 1 al valor acumulado(posicion correcta)
 		c[a[x]] = c[a[x]] - 1
 	return b
-
 
 
 #Ejecucion
