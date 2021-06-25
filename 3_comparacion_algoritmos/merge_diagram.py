@@ -1,4 +1,4 @@
-#heapsort sort diagram
+#MERGE SORT diagram
 import sys
 import os
 from tqdm import tqdm
