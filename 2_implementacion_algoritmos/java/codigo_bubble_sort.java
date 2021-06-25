@@ -27,7 +27,7 @@ public class Bubble_Sort {
     public void Ejecutar(){
         
         for(int indx=0; indx<archivos.length; indx++){
-            Integer arr[] = extraer_data("Random\\example_"+archivos[indx]+".txt").toArray(new Integer[0]);
+            Integer arr[] = extraer_data("../../1_preparacion_datosgeneratedTestData/example_"+archivos[indx]+".txt").toArray(new Integer[0]);
             int n = arr.length;  
             int temp = 0, i = 0, j = 0;  
             long tie_ini = System.nanoTime();

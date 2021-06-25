@@ -23,7 +23,7 @@ int main() {
 
         //*** abrir archivo
         string nombreArchivo = "";
-        nombreArchivo.append("Random\\example_").append(to_string(archivos[indx])).append(".txt");
+        nombreArchivo.append("../../1_preparacion_datos/generatedTestData/example_").append(to_string(archivos[indx])).append(".txt");
         ifstream archivo(nombreArchivo.c_str());
 
         //** RECORRER TXT Y RECOLECTAR DATOS
@@ -56,7 +56,7 @@ int main() {
         auto t2 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> elapsed = t2 - t1;
         float miliseg = (float)(elapsed.count());
-        cout<<archivos[indx]<<","<<setprecision(4)<<miliseg<<endl;
+        cout<<archivos[indx]<<" "<<setprecision(4)<<miliseg<<endl;
 
     }
 

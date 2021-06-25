@@ -1,5 +1,5 @@
-
 import time
+import os
 
 
 class Bubble:
@@ -11,7 +11,8 @@ class Bubble:
                 60000, 70000, 80000, 90000, 100000]
     
     def ejecutar(self):
-        
+
+        file = open('tiempo_bubble_sort_python.txt', "w")  
         for archivo in self.archivos:
         
             line = ""
@@ -20,8 +21,9 @@ class Bubble:
             i = 0
             j = 0
             
+            
             # RECORRER TXT Y RECOLECTAR DATOS 
-            with open("Random\\example_" + str(archivo) + ".txt") as file_in:
+            with open("../../1_preparacion_datos/generatedTestData/example_" + str(archivo) + ".txt") as file_in:
                 for line in file_in:
                     arr.append(int(line))
                     tam += 1
@@ -35,8 +37,9 @@ class Bubble:
             tiempo_fin = time.time()
             
             # IMPRIMIR TIEMPO
-            print(str(archivo) + "," + str(round((float)(tiempo_fin - tiempo_ini), 5)))
-        
+            file.write(str(archivo) + ' ' + str(round((float)(tiempo_fin - tiempo_ini), 5)) +"\n")
+            print(str(archivo) + " " + str(round((float)(tiempo_fin - tiempo_ini), 5)))
+        file.close()
         
 objeto = Bubble()
 objeto.ejecutar()

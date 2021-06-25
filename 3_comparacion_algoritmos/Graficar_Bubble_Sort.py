@@ -39,7 +39,7 @@ plt.xlabel('Data Procesada')
 plt.ylabel('Tiempo (Segundos)')
 plt.title("Bubble Sort")
 plt.legend()
-plt.grid();
+plt.grid()
 
 plt.savefig('grafica_bubble_sort.png')
 plt.show()
