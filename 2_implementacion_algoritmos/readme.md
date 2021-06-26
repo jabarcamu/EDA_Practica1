@@ -1,9 +1,28 @@
 # Implementacion de Codigo
 Para cada uno de los algoritmos de ordenamiento
 
+en cada carpeta la ejecucion de cada algoritmo sera el siguiente
+
+- Para C++ (por ejemplo desde carpeta cpp)
+	 g++ insertion.cpp -std=c++14
+	./a.out	
+
+- Para Java (por ejemplo desde carpeta java)
+	javac InsertionSort.java
+	java InsertionSort
+- Para Python
+	python insertion.py
+
+
+A continuacion se muestra una pequeña explicacion de algunos algoritmos
+
+Insertion Sort:
+
+Ordena un Array por el concepto de mano de cartas o barajas, inicia iterando tomando la primera carta, como comparacion inicial, mientras se vaya tomando un elemento siguiente siempre se comparara respecto al ultimo ordenado para que asi pueda ubicarce en la posicion en la que le corresponde.
+
 Selection Sort:
 
-Ordena un Array de manera repetida buscando el minumo elemento (considerando el orden ascendente) desde la parte desornada y poniendolo al principio. El algoritmo mantiene dos subarrays en el array implementado.
+Ordena un Array de manera repetida buscando el minumo elemento (considerando el orden ascendente) desde la parte desornada y poniendolo al principio. El algoritmo mantiene dos subarrays en el array implementado para que vaya iterando en completitud la longitud de todo el arreglo principal.
 
 
 Ejecucion del Codigo y Pruebas
