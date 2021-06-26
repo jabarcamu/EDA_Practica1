@@ -17,18 +17,18 @@ y_cpp = []
 y_java = []
 
 # RECORRER TXT Y RECOLECTAR DATOS 
-with open("bubble_sort_python" + ".txt") as file_in:
+with open("../2_implementacion_algoritmos/python/tiempo_bubble_sort_python" + ".txt") as file_in:
     for line in file_in:
-        x.append(int(line[0:line.index(",")]))
-        y_python.append(float(line[line.index(",") + 1:len(line)]))
+        x.append(int(line[0:line.index(" ")]))
+        y_python.append(float(line[line.index(" ") + 1:len(line)]))
         
-with open("bubble_sort_cpp" + ".txt") as file_in:
+with open("../2_implementacion_algoritmos/python/tiempo_bubble_sort_cpp" + ".txt") as file_in:
     for line in file_in:
-        y_cpp.append(float(line[line.index(",") + 1:len(line)]))
+        y_cpp.append(float(line[line.index(" ") + 1:len(line)]))
         
-with open("bubble_sort_java" + ".txt") as file_in:
+with open("../2_implementacion_algoritmos/python/tiempo_bubble_sort_java" + ".txt") as file_in:
     for line in file_in:
-        y_java.append(float(line[line.index(",") + 1:len(line)]))
+        y_java.append(float(line[line.index(" ") + 1:len(line)]))
 
 # EJES, LEYENDA, GRAFICAR, GUARDAR
 plt.plot(x, y_python, label='python')

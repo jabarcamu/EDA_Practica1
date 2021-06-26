@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package maestria_cc_edat;
+//package maestria_cc_edat;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
+import java.lang.*;
 import java.util.ArrayList;
 
 /**
@@ -25,26 +24,31 @@ public class Bubble_Sort {
     public Bubble_Sort(){}
     
     public void Ejecutar(){
+        try {
+          PrintWriter writer = new PrintWriter("tiempo_bubble_sort_java.txt");
+          for(int indx=0; indx<archivos.length; indx++){
+              Integer arr[] = extraer_data("../../1_preparacion_datos/generatedTestData/example_"+archivos[indx]+".txt").toArray(new Integer[0]);
+              int n = arr.length;  
+              int temp = 0, i = 0, j = 0;  
+              long tie_ini = System.nanoTime();
+              for(i=0; i < n; i++){  
+                  for(j=1; j < (n-i); j++){  
+                      if(arr[j-1] > arr[j]){  
+                          //swap elements  
+                          temp = arr[j-1];  
+                          arr[j-1] = arr[j];  
+                          arr[j] = temp;  
+                      }  
+                  }  
+              }  
+              long tie_fin = System.nanoTime();
+              System.out.println(archivos[indx]+" "+((double)((double)tie_fin-(double)tie_ini)/1000000000));
+              writer.println( archivos[indx] + " " + ((double)((double)tie_fin-(double)tie_ini)/1000000000));
+              
+          }
+          writer.close();
+        } catch(Exception e){System.out.println("err:"+e);}
         
-        for(int indx=0; indx<archivos.length; indx++){
-            Integer arr[] = extraer_data("../../1_preparacion_datosgeneratedTestData/example_"+archivos[indx]+".txt").toArray(new Integer[0]);
-            int n = arr.length;  
-            int temp = 0, i = 0, j = 0;  
-            long tie_ini = System.nanoTime();
-            for(i=0; i < n; i++){  
-                for(j=1; j < (n-i); j++){  
-                    if(arr[j-1] > arr[j]){  
-                        //swap elements  
-                        temp = arr[j-1];  
-                        arr[j-1] = arr[j];  
-                        arr[j] = temp;  
-                    }  
-                }  
-            }  
-            long tie_fin = System.nanoTime();
-            System.out.println(archivos[indx]+","+((double)((double)tie_fin-(double)tie_ini)/1000000000));
-            
-        }
     }
     
     public ArrayList<Integer> extraer_data(String archivo){
@@ -59,5 +63,13 @@ public class Bubble_Sort {
             br.close();
         }catch(Exception e){System.out.println("err:"+e);}
         return(data);
+    }
+
+    /* Ejecucion */
+    public static void main(String args[]) 
+    {
+        Bubble_Sort bubble = new Bubble_Sort();
+     
+        bubble.Ejecutar();
     }
 }
